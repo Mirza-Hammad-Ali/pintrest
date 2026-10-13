@@ -1,117 +1,125 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from "react";
 
 const pins = [
   {
     id: 1,
-    title: 'A quiet morning in the mountains',
-    category: 'Travel',
-    creator: 'Maya Chen',
+    title: "A quiet morning in the mountains",
+    category: "Travel",
+    creator: "Maya Chen",
     image:
-      'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85',
-    alt: 'A peaceful alpine lake surrounded by mountains',
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85",
+    alt: "A peaceful alpine lake surrounded by mountains",
   },
   {
     id: 2,
-    title: 'The coziest little reading corner',
-    category: 'Home decor',
-    creator: 'Olive & June',
+    title: "The coziest little reading corner",
+    category: "Home decor",
+    creator: "Olive & June",
     image:
-      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85',
-    alt: 'Warm, minimal living room with natural textures',
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85",
+    alt: "Warm, minimal living room with natural textures",
   },
   {
     id: 3,
-    title: 'Slow Sunday breakfast',
-    category: 'Food',
-    creator: 'Nora Ellis',
+    title: "Slow Sunday breakfast",
+    category: "Food",
+    creator: "Nora Ellis",
     image:
-      'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85',
-    alt: 'A colorful table of fresh breakfast ingredients',
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85",
+    alt: "A colorful table of fresh breakfast ingredients",
   },
   {
     id: 4,
-    title: 'A little wildflower inspiration',
-    category: 'Art',
-    creator: 'Petal Studio',
+    title: "A little wildflower inspiration",
+    category: "Art",
+    creator: "Petal Studio",
     image:
-      'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85',
-    alt: 'Soft pink flowers in warm afternoon light',
+      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85",
+    alt: "Soft pink flowers in warm afternoon light",
   },
   {
     id: 5,
-    title: 'Golden hour, somewhere by the sea',
-    category: 'Travel',
-    creator: 'The Sunday Edit',
+    title: "Golden hour, somewhere by the sea",
+    category: "Travel",
+    creator: "The Sunday Edit",
     image:
-      'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=85',
-    alt: 'Sunlit coastal scenery with a winding path',
+      "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=85",
+    alt: "Sunlit coastal scenery with a winding path",
   },
   {
     id: 6,
-    title: 'Simple things, beautifully made',
-    category: 'Style',
-    creator: 'Studio Form',
+    title: "Simple things, beautifully made",
+    category: "Style",
+    creator: "Studio Form",
     image:
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85',
-    alt: 'A thoughtfully styled collection of neutral clothing',
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85",
+    alt: "A thoughtfully styled collection of neutral clothing",
   },
   {
     id: 7,
-    title: 'A home that feels like a deep breath',
-    category: 'Home decor',
-    creator: 'Nina Williams',
+    title: "A home that feels like a deep breath",
+    category: "Home decor",
+    creator: "Nina Williams",
     image:
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85',
-    alt: 'A calm, sunlit living space filled with plants',
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85",
+    alt: "A calm, sunlit living space filled with plants",
   },
   {
     id: 8,
-    title: 'Fresh flavors for the week ahead',
-    category: 'Food',
-    creator: 'Good Gatherings',
+    title: "Fresh flavors for the week ahead",
+    category: "Food",
+    creator: "Good Gatherings",
     image:
-      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',
-    alt: 'A fresh, vibrant salad in a ceramic bowl',
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85",
+    alt: "A fresh, vibrant salad in a ceramic bowl",
   },
   {
     id: 9,
-    title: 'Postcards from the wild',
-    category: 'Travel',
-    creator: 'Ari in Motion',
+    title: "Postcards from the wild",
+    category: "Travel",
+    creator: "Ari in Motion",
     image:
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85',
-    alt: 'Dramatic mountain peaks beneath a cloudy sky',
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85",
+    alt: "Dramatic mountain peaks beneath a cloudy sky",
   },
   {
     id: 10,
-    title: 'Little details, big feeling',
-    category: 'Style',
-    creator: 'Lena Rose',
+    title: "Little details, big feeling",
+    category: "Style",
+    creator: "Lena Rose",
     image:
-      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85',
-    alt: 'A stylish outfit in soft, muted colors',
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85",
+    alt: "A stylish outfit in soft, muted colors",
   },
   {
     id: 11,
-    title: 'Flowers for no special reason',
-    category: 'Art',
-    creator: 'Sunday Flowers',
+    title: "Flowers for no special reason",
+    category: "Art",
+    creator: "Sunday Flowers",
     image:
-      'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=85',
-    alt: 'A bouquet of colorful flowers in a glass vase',
+      "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=85",
+    alt: "A bouquet of colorful flowers in a glass vase",
   },
   {
     id: 12,
-    title: 'A slow afternoon in the garden',
-    category: 'Home decor',
-    creator: 'At Home with Mae',
+    title: "A slow afternoon in the garden",
+    category: "Home decor",
+    creator: "At Home with Mae",
     image:
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85',
-    alt: 'Lush green plants in a sunny garden',
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85",
+    alt: "Lush green plants in a sunny garden",
   },
-]
+];
 
-const categories = ['For you', 'Design', 'Home decor', 'Travel', 'Food', 'Style', 'Art']
+const categories = [
+  "For you",
+  "Design",
+  "Home decor",
+  "Travel",
+  "Food",
+  "Style",
+  "Art",
+];
 
 const iconPaths = {
   home: (
@@ -169,9 +177,9 @@ const iconPaths = {
       <path d="m18 6-12 12M6 6l12 12" />
     </>
   ),
-}
+};
 
-function Icon({ name, size = 22, className = '' }) {
+function Icon({ name, size = 22, className = "" }) {
   return (
     <svg
       aria-hidden="true"
@@ -187,7 +195,7 @@ function Icon({ name, size = 22, className = '' }) {
     >
       {iconPaths[name]}
     </svg>
-  )
+  );
 }
 
 function PinCard({ pin, saved, onSave }) {
@@ -206,10 +214,10 @@ function PinCard({ pin, saved, onSave }) {
           onClick={() => onSave(pin.id)}
           aria-label={saved ? `Unsave ${pin.title}` : `Save ${pin.title}`}
           className={`absolute right-3 top-3 rounded-full px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 ${
-            saved ? 'bg-neutral-900' : 'bg-[#e60023]'
+            saved ? "bg-neutral-900" : "bg-[#e60023]"
           }`}
         >
-          {saved ? 'Saved' : 'Save'}
+          {saved ? "Saved" : "Save"}
         </button>
         <button
           type="button"
@@ -229,60 +237,62 @@ function PinCard({ pin, saved, onSave }) {
         <button
           type="button"
           onClick={() => onSave(pin.id)}
-          aria-label={saved ? 'Remove from saved pins' : 'Save pin'}
+          aria-label={saved ? "Remove from saved pins" : "Save pin"}
           className={`mt-0.5 rounded-full p-1.5 transition hover:bg-neutral-100 ${
-            saved ? 'text-[#e60023]' : 'text-neutral-500'
+            saved ? "text-[#e60023]" : "text-neutral-500"
           }`}
         >
           <Icon name="bookmark" size={19} />
         </button>
       </div>
     </article>
-  )
+  );
 }
 
 function App() {
-  const [activeNav, setActiveNav] = useState('Home')
-  const [activeCategory, setActiveCategory] = useState('For you')
-  const [search, setSearch] = useState('')
-  const [savedPins, setSavedPins] = useState([])
-  const [notice, setNotice] = useState('')
+  const [activeNav, setActiveNav] = useState("Home");
+  const [activeCategory, setActiveCategory] = useState("For you");
+  const [search, setSearch] = useState("");
+  const [savedPins, setSavedPins] = useState([]);
+  const [notice, setNotice] = useState("");
 
   const visiblePins = useMemo(() => {
-    const query = search.trim().toLowerCase()
+    const query = search.trim().toLowerCase();
     return pins.filter((pin) => {
       const matchesQuery =
         !query ||
-        `${pin.title} ${pin.category} ${pin.creator}`.toLowerCase().includes(query)
+        `${pin.title} ${pin.category} ${pin.creator}`
+          .toLowerCase()
+          .includes(query);
       const matchesCategory =
-        activeCategory === 'For you' ||
-        activeCategory === 'Design' ||
-        pin.category === activeCategory
-      const matchesSaved = activeNav !== 'Saved' || savedPins.includes(pin.id)
-      return matchesQuery && matchesCategory && matchesSaved
-    })
-  }, [activeCategory, activeNav, savedPins, search])
+        activeCategory === "For you" ||
+        activeCategory === "Design" ||
+        pin.category === activeCategory;
+      const matchesSaved = activeNav !== "Saved" || savedPins.includes(pin.id);
+      return matchesQuery && matchesCategory && matchesSaved;
+    });
+  }, [activeCategory, activeNav, savedPins, search]);
 
   function toggleSaved(id) {
-    const isSaved = savedPins.includes(id)
+    const isSaved = savedPins.includes(id);
     setSavedPins((current) =>
       isSaved ? current.filter((pinId) => pinId !== id) : [...current, id],
-    )
-    setNotice(isSaved ? 'Removed from your saved Pins' : 'Saved to your Pins')
-    window.setTimeout(() => setNotice(''), 2200)
+    );
+    setNotice(isSaved ? "Removed from your saved Pins" : "Saved to your Pins");
+    window.setTimeout(() => setNotice(""), 2200);
   }
 
   function showNotice(message) {
-    setNotice(message)
-    window.setTimeout(() => setNotice(''), 2200)
+    setNotice(message);
+    window.setTimeout(() => setNotice(""), 2200);
   }
 
   const navigation = [
-    { label: 'Home', icon: 'home' },
-    { label: 'Explore', icon: 'sparkles' },
-    { label: 'Messages', icon: 'chat' },
-    { label: 'Saved', icon: 'bookmark' },
-  ]
+    { label: "Home", icon: "home" },
+    { label: "Explore", icon: "sparkles" },
+    { label: "Messages", icon: "chat" },
+    { label: "Saved", icon: "bookmark" },
+  ];
 
   return (
     <div className="min-h-screen bg-white text-neutral-900">
@@ -290,8 +300,8 @@ function App() {
         <button
           type="button"
           onClick={() => {
-            setActiveNav('Home')
-            setActiveCategory('For you')
+            setActiveNav("Home");
+            setActiveCategory("For you");
           }}
           aria-label="Pinterest home"
           className="mb-8 grid h-11 w-11 place-items-center rounded-full text-[#e60023] transition hover:bg-red-50"
@@ -304,24 +314,27 @@ function App() {
             />
           </svg>
         </button>
-        <nav aria-label="Main navigation" className="flex flex-1 flex-col items-center gap-3">
+        <nav
+          aria-label="Main navigation"
+          className="flex flex-1 flex-col items-center gap-3"
+        >
           {navigation.map((item) => (
             <button
               type="button"
               key={item.label}
               onClick={() => {
-                setActiveNav(item.label)
-                if (item.label === 'Home' || item.label === 'Explore') {
-                  setActiveCategory('For you')
-                  setSearch('')
+                setActiveNav(item.label);
+                if (item.label === "Home" || item.label === "Explore") {
+                  setActiveCategory("For you");
+                  setSearch("");
                 }
               }}
               aria-label={item.label}
               title={item.label}
               className={`grid h-12 w-12 place-items-center rounded-full transition ${
                 activeNav === item.label
-                  ? 'bg-neutral-900 text-white'
-                  : 'text-neutral-700 hover:bg-neutral-100'
+                  ? "bg-neutral-900 text-white"
+                  : "text-neutral-700 hover:bg-neutral-100"
               }`}
             >
               <Icon name={item.icon} size={23} />
@@ -330,7 +343,7 @@ function App() {
         </nav>
         <button
           type="button"
-          onClick={() => showNotice('Settings are coming soon')}
+          onClick={() => showNotice("Settings are coming soon")}
           aria-label="Settings"
           className="mb-4 grid h-11 w-11 place-items-center rounded-full text-neutral-700 transition hover:bg-neutral-100"
         >
@@ -338,7 +351,7 @@ function App() {
         </button>
         <button
           type="button"
-          onClick={() => showNotice('Your profile')}
+          onClick={() => showNotice("Your profile")}
           aria-label="Your profile"
           className="h-9 w-9 overflow-hidden rounded-full ring-2 ring-white"
         >
@@ -354,13 +367,17 @@ function App() {
         <header className="sticky top-0 z-20 flex h-[76px] items-center gap-4 bg-white/95 px-4 backdrop-blur sm:px-6 lg:px-8">
           <button
             type="button"
-            onClick={() => showNotice('Choose a board to organize your Pins')}
+            onClick={() => showNotice("Choose a board to organize your Pins")}
             className="hidden shrink-0 items-center gap-1 rounded-full px-3 py-3 text-sm font-semibold hover:bg-neutral-100 sm:flex"
           >
             Create <Icon name="chevron" size={16} />
           </button>
           <label className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-full bg-[#f1f2f2] px-4 transition focus-within:bg-white focus-within:ring-2 focus-within:ring-neutral-300">
-            <Icon name="search" size={21} className="shrink-0 text-neutral-700" />
+            <Icon
+              name="search"
+              size={21}
+              className="shrink-0 text-neutral-700"
+            />
             <input
               type="search"
               value={search}
@@ -373,7 +390,7 @@ function App() {
               <button
                 type="button"
                 aria-label="Clear search"
-                onClick={() => setSearch('')}
+                onClick={() => setSearch("")}
                 className="grid h-7 w-7 shrink-0 place-items-center rounded-full hover:bg-neutral-200"
               >
                 <Icon name="close" size={16} />
@@ -382,7 +399,7 @@ function App() {
           </label>
           <button
             type="button"
-            onClick={() => showNotice('You’re all caught up!')}
+            onClick={() => showNotice("You’re all caught up!")}
             aria-label="Notifications"
             className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-neutral-700 transition hover:bg-neutral-100"
           >
@@ -390,7 +407,7 @@ function App() {
           </button>
           <button
             type="button"
-            onClick={() => showNotice('Your messages')}
+            onClick={() => showNotice("Your messages")}
             aria-label="Messages"
             className="hidden h-11 w-11 shrink-0 place-items-center rounded-full text-neutral-700 transition hover:bg-neutral-100 sm:grid"
           >
@@ -398,7 +415,7 @@ function App() {
           </button>
           <button
             type="button"
-            onClick={() => showNotice('Your profile')}
+            onClick={() => showNotice("Your profile")}
             aria-label="Your profile"
             className="h-9 w-9 shrink-0 overflow-hidden rounded-full md:hidden"
           >
@@ -413,23 +430,25 @@ function App() {
         <main className="mx-auto max-w-[1700px] px-4 pb-12 sm:px-6 lg:px-10">
           <section className="mx-auto max-w-5xl pb-5 pt-4 text-center">
             <p className="mb-2 text-sm font-medium text-neutral-500">
-              {activeNav === 'Saved' ? 'Your collection' : 'Tuesday, October 13'}
+              {activeNav === "Saved"
+                ? "Your collection"
+                : "Tuesday, October 13"}
             </p>
             <h1 className="text-[26px] font-semibold tracking-tight text-neutral-900 sm:text-3xl">
-              {activeNav === 'Saved'
-                ? 'Pins you saved'
-                : activeNav === 'Explore'
-                  ? 'Find your next big idea'
-                  : 'Good afternoon, Alex'}
+              {activeNav === "Saved"
+                ? "Pins you saved"
+                : activeNav === "Explore"
+                  ? "Find your next big idea"
+                  : "Good afternoon, Alex"}
             </h1>
             <p className="mt-2 text-sm text-neutral-500">
-              {activeNav === 'Saved'
-                ? 'All your inspiration, in one place.'
-                : 'A little inspiration for whatever you’re dreaming up.'}
+              {activeNav === "Saved"
+                ? "All your inspiration, in one place."
+                : "A little inspiration for whatever you’re dreaming up."}
             </p>
           </section>
 
-          {activeNav !== 'Saved' && (
+          {activeNav !== "Saved" && (
             <nav
               aria-label="Explore categories"
               className="scrollbar-hide mb-7 flex items-center justify-start gap-2 overflow-x-auto pb-2 md:justify-center"
@@ -441,8 +460,8 @@ function App() {
                   onClick={() => setActiveCategory(category)}
                   className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition ${
                     activeCategory === category
-                      ? 'bg-neutral-900 text-white'
-                      : 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200'
+                      ? "bg-neutral-900 text-white"
+                      : "bg-neutral-100 text-neutral-800 hover:bg-neutral-200"
                   }`}
                 >
                   {category}
@@ -453,7 +472,7 @@ function App() {
 
           {visiblePins.length > 0 ? (
             <section
-              aria-label={activeNav === 'Saved' ? 'Saved Pins' : 'Idea Pins'}
+              aria-label={activeNav === "Saved" ? "Saved Pins" : "Idea Pins"}
               className="columns-2 gap-x-4 sm:columns-3 sm:gap-x-5 lg:columns-4 xl:columns-5"
             >
               {visiblePins.map((pin) => (
@@ -468,20 +487,23 @@ function App() {
           ) : (
             <div className="mx-auto flex min-h-64 max-w-md flex-col items-center justify-center text-center">
               <div className="mb-4 grid h-14 w-14 place-items-center rounded-full bg-neutral-100 text-neutral-500">
-                <Icon name={activeNav === 'Saved' ? 'bookmark' : 'search'} size={25} />
+                <Icon
+                  name={activeNav === "Saved" ? "bookmark" : "search"}
+                  size={25}
+                />
               </div>
               <h2 className="text-lg font-semibold">
-                {activeNav === 'Saved' ? 'No saved Pins yet' : 'No ideas found'}
+                {activeNav === "Saved" ? "No saved Pins yet" : "No ideas found"}
               </h2>
               <p className="mt-2 text-sm text-neutral-500">
-                {activeNav === 'Saved'
-                  ? 'When you find something you love, save it here.'
-                  : 'Try another search or explore a different category.'}
+                {activeNav === "Saved"
+                  ? "When you find something you love, save it here."
+                  : "Try another search or explore a different category."}
               </p>
-              {activeNav === 'Saved' && (
+              {activeNav === "Saved" && (
                 <button
                   type="button"
-                  onClick={() => setActiveNav('Home')}
+                  onClick={() => setActiveNav("Home")}
                   className="mt-5 rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white hover:bg-neutral-700"
                 >
                   Find inspiration
@@ -501,7 +523,7 @@ function App() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
